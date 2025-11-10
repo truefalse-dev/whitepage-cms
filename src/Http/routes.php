@@ -18,5 +18,3 @@ Route::any(
     ->whereIn('service', [WhitePage::CMS_ROOT_PREFIX, WhitePage::SERVICE_ROOT_PREFIX])
     ->where('any', '.*')
     ->middleware(DynamicRouting::class);
-
-Route::any('/index', [WhitePageController::class, 'index']);

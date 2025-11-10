@@ -16,6 +16,8 @@ abstract class ServiceProvider extends LaravelServiceProvider
 
     public function boot()
     {
+        $this->loadRoutesFrom(__DIR__ .'/Http/routes.php');
+
         $config = $this->init(Config::make());
 
         $sections = [];

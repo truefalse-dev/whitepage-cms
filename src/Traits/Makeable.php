@@ -1,6 +1,6 @@
 <?php
 
-namespace Traits;
+namespace WhitePage\Traits;
 
 trait Makeable
 {

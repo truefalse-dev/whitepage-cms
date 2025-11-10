@@ -2,8 +2,8 @@
 
 namespace WhitePage\Components;
 
-use App\Facades\WhitePage;
-use App\Traits\Makeable;
+use WhitePage\Facades\WhitePage;
+use WhitePage\Traits\Makeable;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Collection;
 

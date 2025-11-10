@@ -2,7 +2,7 @@
 
 namespace WhitePage\Components\Filters;
 
-use Traits\Makeable;
+use WhitePage\Traits\Makeable;
 use Illuminate\Support\Str;
 
 class AbstractFilter

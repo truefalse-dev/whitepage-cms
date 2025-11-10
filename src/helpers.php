@@ -1,21 +1,9 @@
 <?php
 
-
 use WhitePage\Facades\WhitePage;
 use WhitePage\Builders\NavigationBuilder;
 use WhitePage\Services\BackendService;
 use WhitePage\Services\CmsService;
-
-function whitepage_path($relative_path = null)
-{
-    $path = config('whitepage.path');
-
-    if ($relative_path) {
-        $path = sprintf('%s/%s', $path, $relative_path);
-    }
-
-    return $path;
-}
 
 function inputs()
 {

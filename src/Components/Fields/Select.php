@@ -11,6 +11,7 @@ class Select extends AbstractField implements FieldInterface
     protected Collection $options;
     private ?array $withRelationship = [];
     protected bool $isInteger = false;
+    protected bool $hasNonSelected = true;
 
     public function rule(): array
     {
@@ -38,7 +39,7 @@ class Select extends AbstractField implements FieldInterface
         return $this;
     }
 
-    public function options($options)
+    public function options(Collection|array $options)
     {
         $this->options = $options instanceof Collection ? $options : collect($options);
         return $this;
@@ -62,6 +63,16 @@ class Select extends AbstractField implements FieldInterface
         ]);
 
         return $options->toArray();
+    }
+
+    public function boolean($trueLabel = 'Yes', $falseLabel = 'No')
+    {
+        $this->hasNonSelected = false;
+        $this->options = collect([
+            1 => $trueLabel,
+            0 => $falseLabel,
+        ]);
+        return $this;
     }
 
     public function withRelationship()

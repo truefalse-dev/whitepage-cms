@@ -16,9 +16,7 @@ abstract class ServiceProvider extends LaravelServiceProvider
 
     public function boot()
     {
-        $this->publishes([
-            dirname(__DIR__) . '/resources/views' => resource_path('views/whitepage'),
-        ], 'views');
+        $this->loadViewsFrom(dirname(__DIR__) . '/resources/views', 'whitepage');
 
         $this->loadRoutesFrom(__DIR__ . '/Http/routes.php');
 

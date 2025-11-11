@@ -61,3 +61,12 @@ function fromPlural($word) {
         return substr($word, 0, -1); // ends with 's'
     }
 }
+
+if (!function_exists('vite_package_assets')) {
+    function vite_package_assets(array $paths): array
+    {
+        $packageBase = 'vendor/truefalse-dev/whitepage-cms/';
+
+        return collect($paths)->map(fn($path) => $packageBase . $path)->all();
+    }
+}

@@ -1,0 +1,11 @@
+@php
+    $section = app('section');
+@endphp
+
+@extends('whitepage.layouts.app')
+
+@section('content')
+    @include('whitepage.components.title')
+    @include('whitepage.components.list.heading')
+    @include('whitepage.components.table', ['section' => $section->getName()])
+@endsection

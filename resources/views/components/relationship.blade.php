@@ -12,7 +12,7 @@ use WhitePage\Facades\WhitePage;
                         <td class="px-6 py-4 whitespace-nowrap">{{ $item->name }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-right space-x-2">
                             <button
-                                @click.stop="openForm('{{ href(WhitePage::SERVICE_ROOT_PREFIX, 'user', 'form', $item->id) }}')"
+                                @click.stop="openForm('{{ href(WhitePage::BACKEND_ROOT_PREFIX, 'user', 'form', $item->id) }}')"
                                 class="inline-block bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 text-xs"
                             >
                                 Edit

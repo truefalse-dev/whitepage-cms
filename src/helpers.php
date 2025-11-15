@@ -1,20 +1,22 @@
 <?php
 
 use WhitePage\Facades\WhitePage;
-use WhitePage\Builders\NavigationBuilder;
-use WhitePage\Services\BackendService;
 use WhitePage\Services\CmsService;
+use WhitePage\Services\AuthService;
+use WhitePage\Services\BackendService;
+use WhitePage\Builders\NavigationBuilder;
 
 function inputs()
 {
     return json_encode((object) array_filter(request()->all(), fn ($input) => $input !== null));
 }
 
-function href($service, $alias, string|null $method = null, int|null $id = null, string|null $relationship = null)
+function href($service, $alias, ?string $method = null, ?int $id = null, ?string $relationship = null)
 {
     $appService = app(match ($service) {
         WhitePage::CMS_ROOT_PREFIX => CmsService::class,
-        WhitePage::SERVICE_ROOT_PREFIX => BackendService::class,
+        WhitePage::BACKEND_ROOT_PREFIX => BackendService::class,
+        WhitePage::AUTH_ROOT_PREFIX => AuthService::class,
     });
 
     return $appService::href($alias, $method, $id, $relationship);

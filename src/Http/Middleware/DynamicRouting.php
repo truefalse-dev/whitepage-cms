@@ -16,8 +16,11 @@ class DynamicRouting
     {
         if ($request->is(['admin', 'backend']) || $request->is(['admin/*', 'backend/*'])) {
 
-            // check if logged
-            return $next($request);
+            if (auth()->check()) {
+                return $next($request);
+            }
+
+            return redirect()->guest(route('whitepage.login'));
         }
 
         abort(404);

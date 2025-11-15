@@ -38,7 +38,7 @@ class Relationship
 
     public function getHref(): string
     {
-        return href(WhitePage::SERVICE_ROOT_PREFIX, '');
+        return href(WhitePage::BACKEND_ROOT_PREFIX, '');
     }
 
     public function getName(): string

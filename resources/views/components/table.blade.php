@@ -4,7 +4,7 @@
 @endphp
 
 <div x-data="tableComponent"
-     data-url="{{ href(WhitePage::SERVICE_ROOT_PREFIX, $section, AbstractMethod::TABLE_METHOD)  }}" class="relative">
+     data-url="{{ href(WhitePage::BACKEND_ROOT_PREFIX, $section, AbstractMethod::TABLE_METHOD)  }}" class="relative">
     <div class="mt-6 relative">
 
         <template x-for="filter in filters" :key="filter.name">

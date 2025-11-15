@@ -2,17 +2,11 @@
     use WhitePage\Facades\WhitePage;
     use WhitePage\Builders\FormBuilder;
     use WhitePage\Components\AbstractMethod;
-
-//    /** @var FormBuilder $form */
-//    /** @var $method */
-//    $fields = $form->getFields();
-//    $action = $form->getAction($form->getModelId());
-//    $formId = $form->getId();
 @endphp
 
 <div
     x-data="formComponent"
-    data-url="{{ href(WhitePage::SERVICE_ROOT_PREFIX, $section, AbstractMethod::FORM_METHOD, $id ?? null) }}"
+    data-url="{{ href(WhitePage::BACKEND_ROOT_PREFIX, $section, AbstractMethod::FORM_METHOD, $id ?? null) }}"
     backward-url="{{ href(WhitePage::CMS_ROOT_PREFIX, $section, AbstractMethod::LIST_METHOD) }}"
     class="space-y-4"
 >

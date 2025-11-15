@@ -122,7 +122,7 @@ class BackendService implements ServiceInterface
         $section = toPlural($alias);
 
         $hrefArray[] = env('APP_URL');
-        $hrefArray[] = WhitePage::SERVICE_ROOT_PREFIX;
+        $hrefArray[] = WhitePage::BACKEND_ROOT_PREFIX;
         $hrefArray[] = $section;
         $hrefArray[] = $method === AbstractMethod::LIST_METHOD ? null : $method;
         $hrefArray[] = $id;

@@ -12,7 +12,7 @@
                 class="reloadable-component"
                 x-ref="relationshipContainer"
                 x-data="loadRelationshipComponent()"
-                data-url="{{ href(WhitePage::SERVICE_ROOT_PREFIX, $section->getName(), AbstractMethod::RELATIONSHIP_METHOD, $section->getModelId(), $relationship) }}"
+                data-url="{{ href(WhitePage::BACKEND_ROOT_PREFIX, $section->getName(), AbstractMethod::RELATIONSHIP_METHOD, $section->getModelId(), $relationship) }}"
             >
                 <div x-html="content"></div>
             </div>

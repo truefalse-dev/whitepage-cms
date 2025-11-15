@@ -1,20 +1,29 @@
 <?php
 
 use WhitePage\Facades\WhitePage;
-use WhitePage\Http\Controllers\WhitePageController;
+use WhitePage\Http\Controllers\CmsController;
+use WhitePage\Http\Controllers\AuthController;
 use WhitePage\Http\Middleware\DynamicRouting;
 use Illuminate\Support\Facades\Route;
 
 Route::match(
     ['post', 'get'],
     sprintf('/%s/permissions', WhitePage::CMS_ROOT_PREFIX),
-    [WhitePageController::class, 'permissions']
+    [CmsController::class, 'permissions']
 );
+
+Route::match(
+    ['post', 'get'],
+    'admin/auth/login',
+    [AuthController::class, 'login']
+)
+    ->name('whitepage.login')
+    ->middleware('web');
 
 Route::any(
     '/{service}/{any?}',
-    [WhitePageController::class, 'sections']
+    [CmsController::class, 'sections']
 )
-    ->whereIn('service', [WhitePage::CMS_ROOT_PREFIX, WhitePage::SERVICE_ROOT_PREFIX])
+    ->whereIn('service', [WhitePage::CMS_ROOT_PREFIX, WhitePage::BACKEND_ROOT_PREFIX])
     ->where('any', '.*')
-    ->middleware(DynamicRouting::class);
+    ->middleware(['web', DynamicRouting::class]);

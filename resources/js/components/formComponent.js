@@ -20,9 +20,8 @@ export function formComponent() {
                 this.$nextTick(() => {
                     this.fields.forEach(field => {
                         let val = field.value !== null ? field.value : '';
-
-                        if (field.type === 'select' && val !== '') {
-                            val = val.toString();
+                        if (field.type === 'select') {
+                            val = val || field.options[0].id;
                         }
 
                         this.formData[field.name] = val;
@@ -34,6 +33,9 @@ export function formComponent() {
             try {
                 const response = await axios
                     .post(this.url, this.formData)
+                    .then(response => {
+                        window.location.href = this.backwardUrl;
+                    })
                     .catch((err) => {
                         if (err.response && err.response.status === 422) {
                             // const errors = err.response.data.errors;
@@ -46,8 +48,6 @@ export function formComponent() {
                             alert(err.message);
                         }
                     });
-
-                window.location.href = this.backwardUrl;
                 this.error = null;
             } catch (error) {
                 console.error('Error fetching data:', error);

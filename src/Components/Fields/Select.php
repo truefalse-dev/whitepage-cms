@@ -11,6 +11,7 @@ class Select extends AbstractField implements FieldInterface
     protected Collection $options;
     private ?array $withRelationship = [];
     protected bool $isInteger = false;
+    protected bool $isBoolean = false;
     protected bool $hasNonSelected = true;
 
     public function rule(): array
@@ -25,6 +26,10 @@ class Select extends AbstractField implements FieldInterface
 
         if ($this->isInteger) {
             $type = 'integer';
+        }
+
+        if ($this->isBoolean) {
+            $type = 'boolean';
         }
 
         $rules[] = $type;
@@ -69,6 +74,7 @@ class Select extends AbstractField implements FieldInterface
 
     public function boolean($trueLabel = 'Yes', $falseLabel = 'No')
     {
+        $this->isBoolean = true;
         $this->hasNonSelected = false;
         $this->options = collect([
             1 => $trueLabel,

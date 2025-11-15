@@ -82,7 +82,7 @@ class FormBuilder
                         $relationModel = $this->model->{$field->relationship->getRelationName()};
 
                         if ($field->relationship instanceof MorphToMany) {
-                            $value = $relationModel->first()->id;
+                            $value = $relationModel->first()?->id;
                         }
 
                         if ($field->relationship instanceof BelongsTo) {

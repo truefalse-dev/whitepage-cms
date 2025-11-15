@@ -57,10 +57,12 @@ class Select extends AbstractField implements FieldInterface
             return ['id' => $key, 'label' => $value];
         })->values();
 
-        $options->prepend([
-            'id' => '',
-            'label' => 'Non selected',
-        ]);
+        if ($this->hasNonSelected) {
+            $options->prepend([
+                'id' => '',
+                'label' => 'Non selected',
+            ]);
+        }
 
         return $options->toArray();
     }

@@ -2,7 +2,7 @@
 
 namespace WhitePage;
 
-use WhitePage\Facades\WhitePage;
+use WhitePage\Commands\GenerateSection;
 use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
 
 abstract class ServiceProvider extends LaravelServiceProvider
@@ -27,6 +27,12 @@ abstract class ServiceProvider extends LaravelServiceProvider
             $section = app($className);
             $alias = toPlural($section->getName());
             $sections[$alias] = $section;
+        }
+
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                GenerateSection::class,
+            ]);
         }
 
         app()->instance('sections', collect($sections));

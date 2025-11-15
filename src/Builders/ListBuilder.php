@@ -5,6 +5,7 @@ namespace WhitePage\Builders;
 use WhitePage\Facades\WhitePage;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use WhitePage\Components\Columns\IdColumn;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Collection;
@@ -87,6 +88,8 @@ class ListBuilder
             }
             return [$field->getName() => $field];
         });
+
+        $this->columns->prepend(IdColumn::make(), 'id');
 
         return $this;
     }

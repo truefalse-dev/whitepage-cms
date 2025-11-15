@@ -30,7 +30,7 @@ class FormMethod extends AbstractForm
 
     public function post()
     {
-        $model = $this->section->getModelClass()->find($this->id);
+        $model = $this->section->getModelClass()->find($this->id) ?? $this->section->getModelClass();
 
         $form = $this->buildForm($model);
 

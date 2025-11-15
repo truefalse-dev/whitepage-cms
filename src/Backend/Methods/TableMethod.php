@@ -2,12 +2,13 @@
 
 namespace WhitePage\Backend\Methods;
 
-use WhitePage\Builders\ListBuilder;
 use WhitePage\Components\AbstractList;
+use Illuminate\Database\Eloquent\Model;
 use WhitePage\Components\Columns\AbstractColumn;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
 
 class TableMethod extends AbstractList
 {
@@ -44,7 +45,14 @@ class TableMethod extends AbstractList
 
         $list = $this->replacePaginatorItems(
             $paginator,
-            $paginator->map(function ($row) {
+            $paginator->map(function (Model $row) {
+
+                if (!method_exists($row, 'getAttributeList')) {
+                    throw ValidationException::withMessages([
+                        $this->section->getName() => [get_class($row) . ' doesn\'t have trait HasHref.'],
+                    ]);
+                }
+
                 return collect($row->getAttributeList($this->section->getName()))->map(
                     function ($value, $field) {
                         /** @var AbstractColumn $column */

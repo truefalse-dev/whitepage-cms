@@ -1,0 +1,34 @@
+<?php
+
+namespace App\WhitePage\Sections\{{name}};
+
+use App\Models\{{name}};
+use WhitePage\Builders\FormBuilder;
+use WhitePage\Builders\ListBuilder;
+use WhitePage\Components\AbstractSection;
+use WhitePage\Contracts\SectionInterface;
+
+class {{name}}Section extends AbstractSection implements SectionInterface
+{
+    protected $name = '{{lowerName}}';
+    protected static ?string $modelClass = {{name}}::class;
+
+    public function form(FormBuilder $form)
+    {
+        return $form
+            ->fields([
+                // ...
+            ]);
+    }
+
+    public function list(ListBuilder $list): ListBuilder
+    {
+        return $list
+            ->table([
+                // ...
+            ])
+            ->filters([
+
+            ]);
+    }
+}
